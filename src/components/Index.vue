@@ -1,17 +1,16 @@
 <template>
 <div class="main">
    <nav-head></nav-head>
-   <main-contain></main-contain>
+   <router-view></router-view>
 
 </div>
 
 </template>
 <script>
-import contain from "./mn/Main.vue"
+
 import navad from "./shared/Head.vue"
 export default {
   components:{
-    mainContain:contain,
     navHead:navad
   }
 }

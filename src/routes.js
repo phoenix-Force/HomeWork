@@ -7,7 +7,7 @@ export const routes = [{
     name: 'Home'
   },
   {
-    path: '/',
+    path: '/edit',
     component: edit,
     name: 'edit'
   }
