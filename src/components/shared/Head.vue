@@ -9,9 +9,9 @@
   background-color="#545c64"
   text-color="#fff"
   active-text-color="#ffd04b">
-  <el-menu-item index="1">PARADOX</el-menu-item>
-  <el-menu-item index="2">Home</el-menu-item>
-  <el-menu-item index="3"></el-menu-item>
+  <el-menu-item index="2">PARADOX</el-menu-item>
+  <el-menu-item index="1" active>Home</el-menu-item>
+  <el-menu-item index="3" ></el-menu-item>
   <el-submenu index="4">
     <template slot="title">Home</template>
     <el-menu-item index="4-1">item one</el-menu-item>
