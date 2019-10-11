@@ -1,18 +1,28 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="800px" loop>
-    <el-carousel-item v-for="item in 6" :key="item">
-      <h3 class="medium">{{ item }}</h3>
+  <el-carousel :interval="4000" type="card" height="550px" loop>
+    <el-carousel-item v-for="(item,index) in img" :key="index">
+      <el-image
+      style="width: 100%; height: 100%"
+      :src="item"
+      ></el-image>
+
     </el-carousel-item>
   </el-carousel>
 </template>
 <script>
 export default {
-  // data()=>{
-  //   return {
-  //     img: ['../../assets/slider/s1.jpg','../../assets/slider/s1.jpg','../../assets/slider/s2.jpg','../../assets/slider/s3.jpg','../../assets/slider/s4.jpeg','../../assets/slider/s5.jpg']
-  //   }
+  data(){
+    return{
+      img: [
 
-  // }
+        '../../../src/assets/s.jpg',
+        '../../../src/assets/s1.jpg',
+        '../../../src/assets/s3.jpg',
+        '../../../src/assets/s4.jpeg',
+        '../../../src/assets/s5.jpg'
+      ]
+    }
+  }
 }
 </script>
 
