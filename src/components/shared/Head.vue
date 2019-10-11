@@ -10,7 +10,7 @@
   text-color="#fff"
   active-text-color="#ffd04b">
   <el-menu-item index="2"><router-link to="/profile">Paradox</router-link></el-menu-item>
-  <el-menu-item index="1" active ><router-link to="/home">Home</router-link></el-menu-item>
+  <el-menu-item index="1" active ><router-link to="/">Home</router-link></el-menu-item>
   <el-menu-item index="3" ></el-menu-item>
   <el-submenu index="4">
     <template slot="title">Home</template>
@@ -34,20 +34,20 @@
     <h2>Login</h2>
   </span>
   <el-form :model="form">
-    <el-form-item label="User name" :label-width="formLabelWidth">
+    <el-form-item label="User name" >
       <el-input v-model="form.user_name" autocomplete="on"></el-input>
     </el-form-item>
-    <el-form-item label="Password" :label-width="formLabelWidth">
+    <el-form-item label="Password" >
       <el-input v-model="form.name" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item class = "kk">
       <a href="" style="float:right;">forgot password?</a>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" style="width:100%;" :label-width="formLabelWidth" width="100%" @click="dialogFormVisible = false">Submit</el-button>
+      <el-button type="primary" style="width:100%;"  width="100%" @click="dialogFormVisible = false;">Submit</el-button>
     </el-form-item>
     <el-form-item>
-      <el-button  :label-width="formLabelWidth" style="width:100%;" @click="dialogFormVisible = false">Cancel</el-button>
+      <el-button style="width:100%;" @click="dialogFormVisible = false;outerVisible = true">Signup</el-button>
     </el-form-item>
 
     <!-- <el-form-item label="Zones" :label-width="formLabelWidth">
@@ -59,29 +59,87 @@
   </el-form>
 </el-dialog>
 
+  <el-dialog title="Outer Dialog" :visible.sync="outerVisible">
+    <el-form :model="userinfo">
+      <el-form-item label="Name" >
+      <el-input v-model="userinfo.name" autocomplete="on"></el-input>
+    </el-form-item>
+    <el-form-item label="User name" >
+      <el-input v-model="userinfo.username" autocomplete="on"></el-input>
+    </el-form-item>
+    <el-form-item label="Email" >
+      <el-input v-model="userinfo.email" autocomplete="on"></el-input>
+    </el-form-item>
+    <el-form-item label="Date of Birth" >
+      <el-date-picker v-model="userinfo.dob" type="date" placeholder="Pick a date" default-value="2010-10-01">
+    </el-date-picker>
+    </el-form-item>
+    <el-form-item label="Country" >
+      <el-input v-model="userinfo.country" autocomplete="on"></el-input>
+    </el-form-item>
+    <el-form-item label="Mobile Number" >
+      <el-input v-model="userinfo.mobileNumber" autocomplete="on"></el-input>
+    </el-form-item>
+    <el-form-item label="Password" >
+      <el-input  autocomplete="on"></el-input>
+    </el-form-item>
+    <el-form-item label="Confirm Password" >
+      <el-input v-model="userinfo.password" autocomplete="on"></el-input>
+    </el-form-item>
+    <el-button>Submit</el-button>
+    </el-form>
+    <el-dialog
+        width="30%"
+        title="Confirmation"
+        :visible.sync="innerVisible"
+        append-to-body>
+    </el-dialog>
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="outerVisible = false">Cancel</el-button>
+      <el-button type="primary" @click="innerVisible = true">open the inner Dialog</el-button>
+    </div>
+  </el-dialog>
+
 </div>
 </template>
 
 <script>
+import { required, minLength, between } from 'vuelidate/lib/validators'
   export default {
     data() {
       return {
         activeIndex: '1',
         activeIndex2: '1',
         dialogFormVisible:false,
+        outerVisible:false,
+        innerVisible:false,
         form: {
           name: '',
           user_name:'',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          password:''
+        },
+        userinfo:{
+          name:'',
+          username:'',
+          email:'',
+          dob:'',
+          password:'',
+          country:'',
+          mobileNumber:''
+
         }
       };
     },
+      validations: {
+    name: {
+      required,
+      minLength: minLength(3)
+    },
+    username: {
+      required,
+      minLength: minLength(5)
+    }
+  },
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
@@ -92,7 +150,7 @@
 <style  scoped>
   a:hover{
     cursor: pointer;
-    color:red;
+    color:rgba(255,255,255,.8);
   }
   a{
     color:white;
