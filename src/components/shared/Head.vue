@@ -59,7 +59,7 @@
   </el-form>
 </el-dialog>
 
-  <el-dialog title="Outer Dialog" :visible.sync="outerVisible">
+  <el-dialog width="50%" title="Outer Dialog" :visible.sync="outerVisible">
     <el-form :model="userinfo">
       <el-form-item label="Name" >
       <el-input v-model="userinfo.name" autocomplete="on"></el-input>
@@ -90,13 +90,14 @@
     </el-form>
     <el-dialog
         width="30%"
-        title="Confirmation"
+        title="Are you confirm to Submit"
         :visible.sync="innerVisible"
         append-to-body>
+        <el-button @click= "signup();" style="float:left;margin-buttom:10px;" type="primary">Confirm</el-button>
     </el-dialog>
     <div slot="footer" class="dialog-footer">
       <el-button @click="outerVisible = false">Cancel</el-button>
-      <el-button type="primary" @click="innerVisible = true">open the inner Dialog</el-button>
+      <el-button type="primary" @click="innerVisible = true;" >Submit</el-button>
     </div>
   </el-dialog>
 
@@ -105,6 +106,7 @@
 
 <script>
 import { required, minLength, between } from 'vuelidate/lib/validators'
+import axios from "axios"
   export default {
     data() {
       return {
@@ -126,7 +128,6 @@ import { required, minLength, between } from 'vuelidate/lib/validators'
           password:'',
           country:'',
           mobileNumber:''
-
         }
       };
     },
@@ -143,6 +144,10 @@ import { required, minLength, between } from 'vuelidate/lib/validators'
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      signup(){
+      if( )
+
       }
     }
   }
