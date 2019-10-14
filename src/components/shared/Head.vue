@@ -59,34 +59,34 @@
   </el-form>
 </el-dialog>
 
-  <el-dialog width="50%" title="Outer Dialog" :visible.sync="outerVisible">
+  <el-dialog width="50%" title="Outer Dialog" :class = "{error:cls}" :visible.sync="outerVisible">
     <el-form :model="userinfo">
       <el-form-item label="Name" >
-      <el-input v-model="userinfo.name" autocomplete="on"></el-input>
+      <el-input v-model="userinfo.name" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item label="User name" >
-      <el-input v-model="userinfo.username" autocomplete="on"></el-input>
+      <el-input v-model="userinfo.username" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item label="Email" >
-      <el-input v-model="userinfo.email" autocomplete="on"></el-input>
+      <el-input v-model="userinfo.email" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item label="Date of Birth" >
-      <el-date-picker v-model="userinfo.dob" type="date" placeholder="Pick a date" default-value="2010-10-01">
+      <el-date-picker v-model="userinfo.dob" :class = "{error:cls}" type="date" placeholder="Pick a date" default-value="2010-10-01">
     </el-date-picker>
     </el-form-item>
     <el-form-item label="Country" >
-      <el-input v-model="userinfo.country" autocomplete="on"></el-input>
+      <el-input v-model="userinfo.country" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item label="Mobile Number" >
-      <el-input v-model="userinfo.mobileNumber" autocomplete="on"></el-input>
+      <el-input v-model="userinfo.mobileNumber" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item label="Password" >
-      <el-input  autocomplete="on"></el-input>
+      <el-input  :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
     <el-form-item label="Confirm Password" >
-      <el-input v-model="userinfo.password" autocomplete="on"></el-input>
+      <el-input v-model="userinfo.password" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
-    <el-button>Submit</el-button>
+
     </el-form>
     <el-dialog
         width="30%"
@@ -115,6 +115,7 @@ import axios from "axios"
         dialogFormVisible:false,
         outerVisible:false,
         innerVisible:false,
+        cls:false,
         form: {
           name: '',
           user_name:'',
@@ -146,8 +147,22 @@ import axios from "axios"
         console.log(key, keyPath);
       },
       signup(){
-      if( )
-
+      if(this.name!='' && this.username!='' && this.email!='' && this.dob!='' && this.password!='' && this.country!='' && this.mobileNumber)
+      {
+        axios.post("https://vue-http-3aefd.firebaseio.com/user.json",this.userinfo).then(res=>console.log(res)).catch(error=>console.log(error));
+        this.innerVisible = false;
+        this.name = '';
+        this.email='';
+        this.dob='';
+        this.password='';
+        this.country='';
+        this.mobileNumber='';
+        this.outerVisible = false;
+      }
+      else{
+        this.cls = true;
+        this.innerVisible = false;
+      }
       }
     }
   }
@@ -164,5 +179,9 @@ import axios from "axios"
   .kk{
     margin-top:0px;
     height:10px;
+  }
+  .error{
+    border: 1px ridge #BA0000;
+    border-radius: 5px;
   }
 </style>
