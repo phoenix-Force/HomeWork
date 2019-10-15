@@ -14,7 +14,6 @@ export default {
   data(){
     return{
       img: [
-
         '../../../src/assets/s.jpg',
         '../../../src/assets/s1.jpg',
         '../../../src/assets/s3.jpg',
@@ -31,7 +30,7 @@ export default {
     color: #475669;
     font-size: 14px;
     opacity: 0.75;
-    line-height: 200px;
+    line-height: 40vh;
     margin: 0;
   }
 

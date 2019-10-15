@@ -18,6 +18,7 @@ Vue.use(Vuelidate)
 Vue.use(VueRouter,{ locale })
 Vue.use(ElementUI)
 Vue.use(vuex)
+
 const router = new VueRouter({
   mode: 'history',
   routes
