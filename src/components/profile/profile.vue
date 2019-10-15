@@ -22,10 +22,14 @@
     </el-row>
       <el-row :gutter="0" class = "profile-row">
           <el-col :span  = "10">
-            <el-row class = "dlts-row"></el-row>
+            <el-row class = "dlts-row">
+              Gender:
+            </el-row>
           </el-col>
           <el-col :span = "14">
-            <el-row class = "dlts-row"></el-row>
+            <el-row class = "dlts-row">
+              {{profile_dtls.gender}}
+            </el-row>
             <el-row class = "dlts-row"></el-row>
           </el-col>
       </el-row>
@@ -46,12 +50,12 @@ export default {
         mobNo:8116927786,
         altrMobNo:8617651914,
       }
-
     }
   }
 
 }
 </script>
+
 <style scoped>
 .profileImage{
   height:100%;
