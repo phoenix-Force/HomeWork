@@ -11,7 +11,7 @@
   active-text-color="#ffd04b">
   <el-menu-item index="2"><router-link to="/profile">Paradox</router-link></el-menu-item>
   <el-menu-item index="1" active ><router-link to="/">Home</router-link></el-menu-item>
-  <el-menu-item index="3" ></el-menu-item>
+  <el-menu-item index="3" ><router-link to="/gallery">Gallery</router-link></el-menu-item>
   <el-submenu index="4">
     <template slot="title">Home</template>
     <el-menu-item index="4-1">item one</el-menu-item>
@@ -111,7 +111,6 @@
 import { required, minLength, between,email} from 'vuelidate/lib/validators'
 import {mapGetters} from "vuex"
 import axios from "axios"
-import {mapActions} from "vuex"
   export default {
     data() {
       return {
@@ -142,26 +141,28 @@ import {mapActions} from "vuex"
 
     },
     methods: {
+
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
       signup(){
-      if(this.name!='' && this.username!='' && this.email!='' && this.dob!='' && this.password!='' && this.country!='' && this.mobileNumber)
-      {
-        axios.post("https://vue-http-3aefd.firebaseio.com/user.json",this.userinfo).then(res=>console.log(res)).catch(error=>console.log(error));
-        this.innerVisible = false;
-        this.name = '';
-        this.email='';
-        this.dob='';
-        this.password='';
-        this.country='';
-        this.mobileNumber='';
-        this.outerVisible = false;
-      }
-      else{
-        this.cls = true;
-        this.innerVisible = false;
-      }
+
+      // if(this.name!='' && this.username!='' && this.email!='' && this.dob!='' && this.password!='' && this.country!='' && this.mobileNumber)
+      //   {
+          axios.post("https://vue-http-3aefd.firebaseio.com/user.json",this.userinfo).then(res=>console.log(res)).catch(error=>console.log(error));
+          this.innerVisible = false;
+          this.name = '';
+          this.email='';
+          this.dob='';
+          this.password='';
+          this.country='';
+          this.mobileNumber='';
+          this.outerVisible = false;
+      //   }
+      // else{
+      //   this.cls = true;
+      //   this.innerVisible = false;
+      // }
       },
     //   submit() {
     //   this.$v.form.$touch();

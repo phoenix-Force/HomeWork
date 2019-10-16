@@ -1,10 +1,12 @@
 import vue from 'vue'
 import Vuex from "vuex"
 import profile from "./Module/profile/profile.js"
+import signup from "./Module/signup/Signup.js"
 vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     profile,
+    signup
   }
 
 })
