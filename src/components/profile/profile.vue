@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row :gutter="15" style=  "margin-top:10px;">
+    <el-row :gutter="15" style=  "margin-top:10px;clear:fixed;">
       <el-col :span="10">
         <el-col :span = "24">
           <div style="height:100%;width:100%">
@@ -36,21 +36,12 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  data(){
-    return{
-      profile_dtls:{
-        dp:"../../../src/assets/s5.jpg",
-        name:"Joussonara Khatun",
-        about:"loremjcncnjcjcjucjuewdcbhyhwebgcuij bgvweiuijcklbjvgrwwuejcdbvgfufuhf huhefjnwjnfuf98y89f98fhfhjmajna",
-        gender:"Male",
-        age:20,
-        address:"chinarpark, Kolkata",
-        Email:"PAradox.joe.007@gmail.com",
-        mobNo:8116927786,
-        altrMobNo:8617651914,
-      }
-    }
+  computed:{
+    ...mapGetters({
+      profile_dtls:'getProfile'
+    })
   }
 
 }

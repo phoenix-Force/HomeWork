@@ -109,8 +109,9 @@
 
 <script>
 import { required, minLength, between,email} from 'vuelidate/lib/validators'
-
+import {mapGetters} from "vuex"
 import axios from "axios"
+import {mapActions} from "vuex"
   export default {
     data() {
       return {
@@ -136,6 +137,9 @@ import axios from "axios"
           mobileNumber:''
         }
       };
+    },
+    computed:{
+
     },
     methods: {
       handleSelect(key, keyPath) {
@@ -195,5 +199,14 @@ import axios from "axios"
   .invalid{
     border:1px solid #ff000040;
     background-color:rgba(92, 0, 0,8);
+  }
+  a{
+    text-decoration: none;
+    font-size:18px;
+    height: 100%;
+    width: 100%;
+  }
+  a:hover{
+    text-decoration: underline;
   }
 </style>

@@ -10,7 +10,6 @@ export default {
       open() {
         this.$message('This is a message.');
       },
-
       openVn() {
         const h = this.$createElement;
         this.$message({

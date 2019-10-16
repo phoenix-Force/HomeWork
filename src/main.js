@@ -8,7 +8,7 @@ import 'element-theme-dark';
 import locale from 'element-ui/lib/locale'
 import Vuelidate from 'vuelidate'
 import vuex from 'vuex'
-
+import store from "./store/Store.js"
 
 
 
@@ -28,5 +28,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
