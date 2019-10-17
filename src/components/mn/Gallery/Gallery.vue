@@ -1,9 +1,6 @@
 <template>
   <div>
-    <el-row :gutter="4">
-        <s-photo  :key="index" v-for="(x,index) in a"></s-photo>
-    </el-row>
-
+    <s-photo  :key="index" v-for="(x,index) in a" @click = "fk()"></s-photo>
   </div>
 
 </template>
@@ -13,11 +10,16 @@ import photo from "../Gallery/photo.vue"
 export default {
   data(){
     return{
-      a:[1]
+      a:[1,5,6]
     }
   },
   components:{
     sPhoto:photo
+  },
+  methods:{
+    fk(){
+      alert("hello");
+    }
   }
 }
 </script>
