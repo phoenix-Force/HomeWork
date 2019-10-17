@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-row>
-      <s-photo></s-photo>
+    <el-row :gutter="4">
+        <s-photo  :key="index" v-for="(x,index) in a"></s-photo>
     </el-row>
 
   </div>
@@ -11,6 +11,11 @@
 <script>
 import photo from "../Gallery/photo.vue"
 export default {
+  data(){
+    return{
+      a:[1]
+    }
+  },
   components:{
     sPhoto:photo
   }
