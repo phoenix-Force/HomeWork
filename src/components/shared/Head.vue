@@ -12,6 +12,7 @@
   <el-menu-item index="2"><router-link to="/profile">Paradox</router-link></el-menu-item>
   <el-menu-item index="1" active ><router-link to="/">Home</router-link></el-menu-item>
   <el-menu-item index="3" ><router-link to="/gallery">Gallery</router-link></el-menu-item>
+  <el-menu-item index="5" ><router-link to="/timeline">Timeline</router-link></el-menu-item>
   <el-submenu index="4">
     <template slot="title">Home</template>
     <el-menu-item index="4-1">item one</el-menu-item>

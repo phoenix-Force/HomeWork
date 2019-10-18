@@ -1,5 +1,39 @@
 <template>
-  <el-row gutter="6">
+<el-row style="heihgt:100%;">
+  <el-col :span = "24">
+    <el-row style="top:0;height:300px;">
+      <el-image  class= "gphoto" style="width: 100%; height: 100%" :src="photo"></el-image>
+    </el-row>
+    <el-row style="height:50px;position:relative;z-index:999;margin-top:-50px;">
+        <el-col :span= "4">
+          <el-button v-if ="liked" class="btnico" @click ="fk()"><i class="fa fa-thumbs-up" style="color: mediumpurple;"></i></el-button>
+          <el-button v-else @click ="fk()" class="btnico"><i  class="fa fa-thumbs-o-up" style="color: mediumpurple;"></i></el-button>
+        </el-col>
+        <el-col :span= "3">
+          <p>{{totalLiked}}</p>
+        </el-col>
+        <el-col :span= "4">
+            <el-button v-if ="dislike" class="btnico" @click ="dk()"><i  class="fa fa-thumbs-down" style="color: mediumpurple;"></i></el-button>
+            <el-button v-else  class="btnico" @click ="dk()"><i  class="fa fa-thumbs-o-down" style="color: mediumpurple;"></i></el-button>
+        </el-col>
+        <el-col :span= "3">
+          <p>{{totalDislike}}</p>
+        </el-col>
+        <el-col :span= "4">
+          <el-button v-if ="comment"   class="btnico"><i  class="fa fa-comment" style="color: mediumpurple;"></i></el-button>
+          <el-button v-else class="btnico"><i  class="fa fa-comment-o" style="color: mediumpurple;"></i></el-button>
+        </el-col>
+        <el-col :span= "3" >
+          <p>12</p>
+        </el-col>
+    </el-row>
+  </el-col>
+</el-row>
+
+
+
+
+  <!-- <el-row gutter="6">
       <el-col :span= "6" class = "photo">
         <el-row style="height:100%;">
           <el-col :span = "24" style="height:100%">
@@ -119,7 +153,7 @@
               <p>{{totalDislike}}</p>
             </el-col>
             <el-col :span= "4">
-              <el-button v-if ="comment"   class="btnico"><i  class="fa fa-comment" style="color: mediumpurple;"></i></el-button>
+              <el-button v-if ="comment"   class="btnico" ><i  class="fa fa-comment" style="color: mediumpurple;"></i></el-button>
               <el-button v-else class="btnico"><i  class="fa fa-comment-o" style="color: mediumpurple;"></i></el-button>
             </el-col>
             <el-col :span= "3" >
@@ -128,7 +162,7 @@
           </el-col>
         </el-row>
       </el-col>
-      </el-row>
+      </el-row> -->
 </template>
 
 <script>
@@ -201,6 +235,7 @@ export default {
 }
 .btnico:hover{
   font-size: 35px;
+  animation: heartBeat 2s infinite;
 }
 .dislike{
   background-color:brown;
@@ -208,5 +243,8 @@ export default {
 .fa-thumbs-o-up:before {
     content: "\f087";
 
+}
+.btnico:active{
+  animation: 	swing 2s infinite;
 }
 </style>
