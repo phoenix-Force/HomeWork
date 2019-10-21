@@ -7,18 +7,16 @@
       <el-col :span="5" style="height:300px;">
 
       </el-col>
-      <!-- <el-col :span="4">
-        <el-upload>upload</el-upload>
-      </el-col>--->
-    </el-row>
-    <el-row style="height:50;">
+      <el-row style="height:50;">
       <el-col :span="6"><el-button @click = "txtfrm=!txtfrm" ><i class="	fa fa-font"></i></el-button></el-col>
       <el-col :span="6"><el-button @click = "picFrm=!picFrm"><i class="fa fa-camera"></i></el-button></el-col>
       <el-col :span="6"><el-button><i class="	fa fa-microphone"></i></el-button></el-col>
       <el-col :span="6"><el-button><i class="fa fa-film"></i></el-button></el-col>
     </el-row>
+    </el-row>
 
-    <el-dialog width="60%" height="60%" :visible.sync="txtfrm">
+
+    <el-dialog width="60%" height="60%" :visible.sync="txtfrm" title="Upload Text">
       <el-form :model="txtData">
         <el-row>
           <textarea :style="setfont" v-model="txtData.txt" style="height:150px;;width:100%;color:white;border-radius:15px;" autocomplete="off" :rows="4"></textarea>
@@ -59,26 +57,25 @@
     </el-dialog>
 
     <el-dialog :visible.sync="picFrm" title="Upload Picture">
-      <el-row style="height:500px;" :gutter="10">
-        <el-col :span="16" style="height:100%;border: 1px solid #540CBC;">
-          <el-image :src ="picDta.url" style="margin-top:10px;" :style="detImg">
-            <div slot="error" class="image-slot">
-              <i class="el-icon-picture-outline"></i>
-            </div>
+      <el-row style="height:550px;">
+        <el-col  style="height:100%;width:550px;border: 1px solid #540CBC;">
+          <el-image
+            style="width: 550px; height: 550px"
+            :src="picDta.url" :style="detImg">
           </el-image>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="8" style="margin-left:25px;">
           <el-row>
-            <el-upload
-              class="upload-demo"
-              action="https://jsonplaceholder.typicode.com/posts/"
-              :on-change="handleChange"
-              :file-list="fileList">
-              <el-button size="small" type="primary">Click to upload</el-button>
-            </el-upload>
+            <el-button type="primary" style="width:100%;margin-top:25px;">Choose Picture</el-button>
           </el-row>
           <el-row>
-            <el-input-number v-model="picDta.border" controls-position="right"></el-input-number>
+            <el-input-number v-model="picDta.border" controls-position="right" style="width:100%;margin-top:25px;"></el-input-number>
+          </el-row>
+          <el-row>
+            <el-button type="primary" style="width:100%;margin-top:25px;">Post</el-button>
+          </el-row>
+          <el-row>
+            <el-button style="width:100%;margin-top:25px;" type="default">Cancel</el-button>
           </el-row>
         </el-col>
         <h4>{{picDta.url}}</h4>

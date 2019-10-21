@@ -84,9 +84,6 @@
     <el-form-item label="Mobile Number" >
       <el-input v-model="userinfo.mobileNumber" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
-    <el-form-item label="Password" >
-      <el-input  :class = "{error:cls}" autocomplete="on"></el-input>
-    </el-form-item>
     <el-form-item label="Confirm Password" >
       <el-input v-model="userinfo.password" :class = "{error:cls}" autocomplete="on"></el-input>
     </el-form-item>
