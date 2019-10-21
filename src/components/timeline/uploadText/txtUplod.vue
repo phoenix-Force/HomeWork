@@ -13,10 +13,11 @@
     </el-row>
     <el-row style="height:50;">
       <el-col :span="6"><el-button @click = "txtfrm=!txtfrm" ><i class="	fa fa-font"></i></el-button></el-col>
-      <el-col :span="6"><el-button><i class="fa fa-camera"></i></el-button></el-col>
+      <el-col :span="6"><el-button @click = "picFrm=!picFrm"><i class="fa fa-camera"></i></el-button></el-col>
       <el-col :span="6"><el-button><i class="	fa fa-microphone"></i></el-button></el-col>
       <el-col :span="6"><el-button><i class="fa fa-film"></i></el-button></el-col>
     </el-row>
+
     <el-dialog width="60%" height="60%" :visible.sync="txtfrm">
       <el-form :model="txtData">
         <el-row>
@@ -55,7 +56,33 @@
           <el-button type="danger" style="float:right;" @click = "cncl()">Cancel</el-button>
         </el-row>
       </el-form>
+    </el-dialog>
 
+    <el-dialog :visible.sync="picFrm" title="Upload Picture">
+      <el-row style="height:500px;" :gutter="10">
+        <el-col :span="16" style="height:100%;border: 1px solid #540CBC;">
+          <el-image :src ="picDta.url" style="margin-top:10px;" :style="detImg">
+            <div slot="error" class="image-slot">
+              <i class="el-icon-picture-outline"></i>
+            </div>
+          </el-image>
+        </el-col>
+        <el-col :span="8">
+          <el-row>
+            <el-upload
+              class="upload-demo"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              :on-change="handleChange"
+              :file-list="fileList">
+              <el-button size="small" type="primary">Click to upload</el-button>
+            </el-upload>
+          </el-row>
+          <el-row>
+            <el-input-number v-model="picDta.border" controls-position="right"></el-input-number>
+          </el-row>
+        </el-col>
+        <h4>{{picDta.url}}</h4>
+      </el-row>
     </el-dialog>
   </el-row>
 </template>
@@ -66,6 +93,7 @@ export default {
     return{
       txtId:0,
       txtfrm:false,
+      picFrm:false,
       isbold:false,
       bclick:false,
       iclick:false,
@@ -85,6 +113,10 @@ export default {
         like:20,
         unlike:'',
         comments:''
+      },
+      picDta:{
+        url:'../../../../src/assets/s3.jpg',
+        border:0
       }
     }
   },
@@ -131,8 +163,8 @@ export default {
       let z = this.txtData;
       z.time = d;
       let idx = this.txtId ++;
-      z.id = idx;
-      console.log("set data")
+      if(z.txt!=''){
+        z.id = idx;
       this.setData(z);
       z.txt='';
       this.txtfrm = false;
@@ -143,6 +175,10 @@ export default {
       z.fntDeco='',
       z.fntWeight='',
       z.bckColor='rgb(204,212,255)'
+      }else{
+        this.$message.error("you have to write Something")
+      }
+
     },
     cncl(){
       let z = this.txtData;
@@ -170,6 +206,12 @@ export default {
         fontStyle:z.fntStyle,
         textDecoration:z.fntDeco
 
+      }
+    },
+    detImg:function(){
+      let x = this.picDta;
+      return{
+        borderRadius:x.border+'px'
       }
     }
   }

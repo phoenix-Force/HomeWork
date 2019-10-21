@@ -4,7 +4,7 @@
 </el-row>
 </template>
 <script>
-import upload from "./upload/upload.vue"
+import upload from "./uploadText/txtUplod.vue"
 export default {
   components:{
     finalUpload:upload
