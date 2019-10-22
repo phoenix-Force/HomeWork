@@ -21,7 +21,7 @@
       <el-image :src = "img_url" style="height:95%;width:99%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;"></el-image>
     </el-col>
   </el-row>
-  <el-row>
+  <el-row style="margin-top:5px;">
     <comment-box></comment-box>
   </el-row>
   <el-row style="heigth:10%;">
@@ -32,6 +32,7 @@
 <script>
 import cmntbx from "./commentBox.vue"
 export default {
+
   data(){
     return {
       img_url:"../../../../src/assets/s2.jpg",
