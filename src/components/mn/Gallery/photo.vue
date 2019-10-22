@@ -231,7 +231,7 @@ export default {
   background-repeat:no-repeat;
   border: none;
   cursor:pointer;
-  margin-left:20px;
+  margin-left:1%;
 }
 .btnico:hover{
   font-size: 35px;
@@ -246,5 +246,8 @@ export default {
 }
 .btnico:active{
   animation: 	swing 2s infinite;
+}
+p{
+  margin-left:1%;
 }
 </style>

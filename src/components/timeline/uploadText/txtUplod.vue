@@ -57,28 +57,28 @@
     </el-dialog>
 
     <el-dialog :visible.sync="picFrm" title="Upload Picture">
-      <el-row style="height:550px;">
-        <el-col  style="height:100%;width:550px;border: 1px solid #540CBC;">
+      <el-row style="height:40vh;">
+        <el-col  style="height:100%;width:60%;border: 1px solid #540CBC;">
           <el-image
-            style="width: 550px; height: 550px"
+            style="width: 100%; height: 100%"
             :src="picDta.url" :style="detImg">
           </el-image>
         </el-col>
-        <el-col :span="8" style="margin-left:25px;">
+        <el-col style="margin-left:25px;width:30%">
           <el-row>
-            <input type="file" @change="onFileChange" />
+            <input style="width:100%;" type="file"  multiple accept="image/*" @change="onFileChange" />
           </el-row>
           <el-row>
             <el-input-number v-model="picDta.border" controls-position="right" style="width:100%;margin-top:25px;"></el-input-number>
           </el-row>
           <el-row>
-            <el-button type="primary" style="width:100%;margin-top:25px;">Post</el-button>
+            <el-button type="primary" style="width:100%;margin-top:25px;" @click = "postOnDb()">Post</el-button>
           </el-row>
           <el-row>
             <el-button style="width:100%;margin-top:25px;" type="default">Cancel</el-button>
           </el-row>
         </el-col>
-        <h4>{{picDta.url}}</h4>
+
       </el-row>
     </el-dialog>
   </el-row>
@@ -100,6 +100,7 @@ export default {
       txtData:{
         id:0,
         txt:'',
+        type:'',
         fntSize:20,
         fntFamily:'verdana',
         fntColor:'rgba(0,0,0,1)',
@@ -113,8 +114,10 @@ export default {
         comments:''
       },
       picDta:{
+        type:'',
         url:null,
-        border:''
+        border:'',
+        file:null
       }
 
     }
@@ -164,7 +167,12 @@ export default {
       let idx = this.txtId ++;
       if(z.txt!=''){
         z.id = idx;
+        alert(z.txt)
       this.setData(z);
+      axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",this.txtData).then(res=>console.log(res)).catch(error=>console.log(error));
+      }else{
+        this.$message.error("you have to write Something")
+      }
       z.txt='';
       this.txtfrm = false;
       z.fntSize=20,
@@ -174,16 +182,23 @@ export default {
       z.fntDeco='',
       z.fntWeight='',
       z.bckColor='rgb(204,212,255)'
-      }else{
-        this.$message.error("you have to write Something")
-      }
 
     },
     onFileChange(e) {
       let x = this.picDta;
       const file = e.target.files[0];
       x.url = URL.createObjectURL(file);
+      x.file = file;
+      console.log(file)
       console.log(x.url)
+    },
+    postOnDb(){
+      let x = this.picDta;
+      if(x.url!=null){
+        axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",this.picDta).then(res=>console.log(res)).catch(error=>console.log(error));
+      }else{
+        this.$message.error("choose a picture first")
+      }
     },
     cncl(){
       let z = this.txtData;

@@ -4,8 +4,10 @@
       <el-col :span="10">
         <el-col :span = "24">
           <div style="height:100%;width:100%">
-            <el-image class  ="profileImage" :src="profile_dtls.dp">
-            </el-image>
+            <!-- <el-image class  ="profileImage" :src="profile_dtls.dp"> -->
+              <img src="data:image/png;base64,aHR0cDovL2xvY2FsaG9zdDo4MDgwL2MxNjNiMzJkLTcyODUtNDNjZi05NjA4LWRjYzZlMmQ4MWQ4ZA=="/>
+
+
           </div>
         </el-col>
       </el-col>
@@ -41,7 +43,13 @@ export default {
   computed:{
     ...mapGetters({
       profile_dtls:'getProfile'
-    })
+    }),
+    srcImg(){
+      $http.get(url,{responseType: "blob"}).success((data) => {
+        var file = new File([profile_dtls.dp], "sample.jpg");
+        xp=file;
+      });
+    }
   }
 
 }

@@ -5,7 +5,7 @@ vue.use(axios)
 
 const state = {
   profile_dtls:{
-    dp:"../../../src/assets/s5.jpg",
+    dp:"blob:http://localhost:8080/c163b32d-7285-43cf-9608-dcc6e2d81d8d",
     name:"Joussonara Khatun",
     about:"loremjcncnjcjcjucjuewdcbhyhwebgcuij bgvweiuijcklbjvgrwwuejcdbvgfufuhf huhefjnwjnfuf98y89f98fhfhjmajna",
     gender:"Male",
