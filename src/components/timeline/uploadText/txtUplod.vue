@@ -66,7 +66,7 @@
         </el-col>
         <el-col :span="8" style="margin-left:25px;">
           <el-row>
-            <el-button type="primary" style="width:100%;margin-top:25px;">Choose Picture</el-button>
+            <input type="file" @change="onFileChange" />
           </el-row>
           <el-row>
             <el-input-number v-model="picDta.border" controls-position="right" style="width:100%;margin-top:25px;"></el-input-number>
@@ -84,6 +84,7 @@
   </el-row>
 </template>
 <script>
+import axios from "axios"
 import { mapActions } from 'vuex'
 export default {
   data(){
@@ -112,9 +113,10 @@ export default {
         comments:''
       },
       picDta:{
-        url:'../../../../src/assets/s3.jpg',
-        border:0
+        url:null,
+        border:''
       }
+
     }
   },
   methods:{
@@ -176,6 +178,12 @@ export default {
         this.$message.error("you have to write Something")
       }
 
+    },
+    onFileChange(e) {
+      let x = this.picDta;
+      const file = e.target.files[0];
+      x.url = URL.createObjectURL(file);
+      console.log(x.url)
     },
     cncl(){
       let z = this.txtData;
