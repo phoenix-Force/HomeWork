@@ -1,7 +1,13 @@
 <template>
 <el-col :span = "16" style="margin-left:15%;position: absolute;">
-  <final-upload></final-upload>
-  <post-container></post-container>
+  <el-row>
+    <final-upload></final-upload>
+  </el-row>
+  <el-col>
+    <el-row style="margin-top:35px;" :key = "index" v-for ="(x,index) in 6">
+      <post-container></post-container>
+    </el-row>
+  </el-col>
 </el-col>
 
 </template>
