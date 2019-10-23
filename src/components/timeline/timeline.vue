@@ -4,8 +4,9 @@
     <final-upload></final-upload>
   </el-row>
   <el-col>
-    <el-row style="margin-top:35px;" :key = "index" v-for ="(x,index) in 6">
-      <post-container></post-container>
+    <el-row style="margin-top:35px;" :key = "index" v-for ="(x,index) in uploads">
+      <post-container v-if="x.type=='pic'"></post-container>
+      <text-container  v-if="x.type=='text'"></text-container>
     </el-row>
   </el-col>
 </el-col>
@@ -14,10 +15,17 @@
 <script>
 import upload from "./uploadText/txtUplod.vue"
 import postcontainer from "./postContainer/postContainer.vue"
+import textcontainer from "./postContainer/textContainer.vue"
 export default {
+  data(){
+    return{
+      uploads:[{type:'text'},{type:"pic"},{type:'text'},{type:'text'},{type:"pic"},{type:"pic"}]
+    }
+  },
   components:{
     finalUpload:upload,
-    postContainer:postcontainer
+    postContainer:postcontainer,
+    textContainer:textcontainer
   }
 }
 </script>
