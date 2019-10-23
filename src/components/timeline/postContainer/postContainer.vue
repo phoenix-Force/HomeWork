@@ -48,5 +48,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+@media screen and (max-width: 1240px) {
+  .mdq{
+    margin-left:10%;
+  }
+}
 </style>

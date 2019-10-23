@@ -1,4 +1,5 @@
 <template>
+<el-row>
   <el-row style="height:100%;-webkit-box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);border-radius: 10px;">
     <el-col :span= "4">
       <el-popover
@@ -37,20 +38,46 @@
         width="200"
         trigger="hover"
         content="<p>hello</p>">
-        <el-button v-if ="comment"   class="btnico" slot="reference"><i  class="fa fa-comment" style="color: mediumpurple;"></i></el-button>
-        <el-button v-else class="btnico" slot="reference"><i  class="fa fa-comment-o" style="color: mediumpurple;"></i></el-button>
+        <el-button v-if ="comment"   class="btnico" slot="reference" @click = "cmnt()"><i  class="fa fa-comment" style="color: mediumpurple;"></i></el-button>
+        <el-button v-else class="btnico" slot="reference"  @click = "cmnt()"><i  class="fa fa-comment-o" style="color: mediumpurple;"></i></el-button>
       </el-popover>
-
     </el-col>
     <el-col :span= "3" >
       <p>12</p>
     </el-col>
   </el-row>
+  <el-row v-if="comment" style="margin-top:10px;height:300px;-webkit-box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);border-radius: 10px;">
+    <el-row style="height:100px;">
+      <el-col :span="20">
+        <textarea type="textarea" :rows=3 class ="txtar" style="" ></textarea>
+      </el-col>
+    </el-row>
+    <el-row style="height:50px;"><!-- Comment Button   -->
+      <el-button type="primary" style="float:right;margin-right:8%;">Comment</el-button>
+    </el-row>
+      <el-row class="infinite-list" v-infinite-scroll="load">
+        <el-row :key="index"  class="infinite-list-item" v-for="(x,index) in loop" style="margin-top:5px;-webkit-box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);border-radius: 10px;" ><!-- Comment profile Info and do a loop here  -->
+        <el-col :span="3">
+          <el-avatar shape="square" :size="75" :src="url" style="margin-top:15px;margin-left:5%;"></el-avatar>
+        </el-col>
+        <el-col :span="20" >
+          <el-row style="height:10%;" class ="mdq">
+          <p>Paradox</p>
+          </el-row>
+          <el-row style="height:80%;" class ="mdq">
+            <p>First Comments</p>
+          </el-row>
+        </el-col>
+      </el-row>
+      </el-row>
+  </el-row>
+</el-row>
 </template>
 <script>
 export default {
   data(){
     return{
+      loop:[1,2,3,4,5,6],
       liked:true,
       dislike:false,
       comment:false,
@@ -82,6 +109,15 @@ export default {
         else{
           this.totalDislike++;
           this.dislike  =!x;
+        }
+      },
+      cmnt(){
+        let x = this.comment;
+        if(x){
+          this.comment = !x;
+
+        }else{
+          this.comment = !x;
         }
       }
     }
@@ -116,7 +152,16 @@ export default {
 }
 @media screen and (max-width: 1240px) {
   .mdq{
-    margin-left:10%;
+    margin-left:8%;
   }
+}
+.txtar{
+  margin-left:10%;
+  margin-top:10px;
+  width:100%;
+  height:100%;
+  background-color:rgb(204,212,255);
+  font-size: 15px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>
