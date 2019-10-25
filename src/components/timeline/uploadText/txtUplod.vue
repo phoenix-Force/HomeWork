@@ -196,8 +196,11 @@ export default {
     },
     postOnDb(){
       let x = this.picDta;
+      const fd = new FormData();
+      fd.append('imageData',x);
       if(x.url!=null){
-        axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",this.picDta).then(res=>console.log(res)).catch(error=>console.log(error));
+        console.log(fd)
+        axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",x).then(res=>console.log(res)).catch(error=>console.log(error));
       }else{
         this.$message.warning("choose a picture first")
       }
