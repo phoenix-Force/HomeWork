@@ -14,10 +14,9 @@
   <el-menu-item index="3" ><router-link to="/gallery">Gallery</router-link></el-menu-item>
   <el-menu-item index="5" ><router-link to="/timeline">Timeline</router-link></el-menu-item>
   <el-submenu index="4">
-    <template slot="title">Home</template>
-    <el-menu-item index="4-1">item one</el-menu-item>
-    <el-menu-item index="4-2">item two</el-menu-item>
-    <el-menu-item index="4-3">item three</el-menu-item>
+    <template slot="title">More</template>
+    <el-menu-item index="4-1">Events</el-menu-item>
+    <el-menu-item index="4-2" ><router-link to="/reminder">Reminder</router-link></el-menu-item>
     <el-submenu index="4-4">
       <template slot="title">item four</template>
       <el-menu-item index="4-4-1">item one</el-menu-item>

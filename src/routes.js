@@ -4,6 +4,7 @@ import slider from "./components/caraos/slider.vue"
 import profile from "./components/profile/profile.vue"
 import gallery from "./components/mn/Gallery/Gallery.vue"
 import timeline from "./components/timeline/timeline.vue"
+import reminder from "././components/reminder/Reminder.vue"
 export const routes = [{
     path: '/',
     component: slider,
@@ -28,5 +29,11 @@ export const routes = [{
     path:'/timeline',
     component:timeline,
     name:"timeline"
+  },
+  {
+    path:"/reminder",
+    component:reminder,
+    name:"reminder"
   }
+
 ];

@@ -116,8 +116,8 @@ export default {
         type:'',
         url:null,
         border:'',
-        file:null
-      }
+      },
+      files:[],
 
     }
   },
@@ -190,17 +190,17 @@ export default {
       let x = this.picDta;
       const file = e.target.files[0];
       x.url = URL.createObjectURL(file);
-      x.file = file;
+      this.files = file;
       console.log(file)
       console.log(x.url)
     },
     postOnDb(){
       let x = this.picDta;
       const fd = new FormData();
-      fd.append('imageData',x);
+      fd.append("image",this.files,this.files.name)
       if(x.url!=null){
-        console.log(fd)
-        axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",x).then(res=>console.log(res)).catch(error=>console.log(error));
+        console.log(fd);
+        axios.post("gs://vue-http-3aefd.appspot.com/Images",fd).then(res=>console.log(res)).catch(error=>console.log(error));
       }else{
         this.$message.warning("choose a picture first")
       }
