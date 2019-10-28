@@ -2,12 +2,16 @@
     <el-col :span="6">
       <el-card class="crd">
         <div slot="header" class="clearfix">
-          <span>BirthDay</span>
+          <span >{{reminds.header}}</span>
           <el-button style="float: right; padding: 3px 0" type="text"><i class="fa fa-times"></i></el-button>
         </div>
+        <span><p>{{reminds.note}}</p></span>
+        <p>Active: <el-switch v-model="reminds.isActive"></el-switch><span style="float:right;">Time-left:</span></p>
+
 
           <div style="padding: 14px;">
-            <span>reminder Note  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae ut cumque possimus ea laborum modi, vel incidunt repudiandae hic optio facere! Et beatae eius exercitationem illo optio tenetur, nulla quia.</span>
+
+
             <div class="bottom clearfix">
               <!-- <time class="time">{{ currentDate }}</time> -->
               <el-button class="button" style="float:right;margin-bottom:10px;">Snooze</el-button>
@@ -17,11 +21,24 @@
     </el-col>
 </template>
 <script>
+import axios from "axios"
 export default {
-
+props:['reminds'],
   data () {
     return {
     }
+  },
+  computed:{
+    reminders(){
+      axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
+      .then(response => {
+        consloe.log("hgsvxdg");
+        console.log(response);
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+    },
   }
 }
 </script>
@@ -34,9 +51,6 @@ export default {
   -webkit-box-shadow: 50px 50px 50px -9px rgba(0,0,0,0.57);
   box-shadow: 50px 50px 50px -9px rgba(0,0,0,0.57);
   border-radius: 15px;
-}
-.clearfix{
-
 }
 .crd:hover{
   /* -webkit-box-shadow: inset 5px 3px 50px 5px rgba(0,0,0,0.39);

@@ -1,26 +1,29 @@
 const state={
   flag:false,
-  reminders:[{header:'',note:'',time:'',date:'',snooze:false}]
+  reminders:[]
 }
 const mutations={
   setReminds(state,remindersData){
-    temp={},
+    let temp={};
     temp.header = remindersData.header;
     temp.note = remindersData.note;
-    temp.time= remindersData.time;
     temp.date = remindersData.date;
+    temp.time= remindersData.time;
+    temp.isActive = remindersData.isActive;
     temp.snooze  = remindersData.snooze;
-    state.reminders.append(temp);
+    state.reminders.push(temp);
+    console.log(state.reminders[0])
   },
   setFlagg(state){
     state.flag =! state.flag;
-    console.log(state.flag);
   }
 }
 const actions={
   setFlag({commit}){
     commit('setFlagg');
-    console.log("actions");
+  },
+  setReminders({commit},data){
+    commit('setReminds',data);
   }
 }
 const getters={
