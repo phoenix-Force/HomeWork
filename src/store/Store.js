@@ -4,12 +4,14 @@ import profile from "./Module/profile/profile.js"
 import signup from "./Module/signup/Signup.js"
 // import uploads from "./Module/timeline/Uploads.js"
 import uploads from "./Module/timeline/textUpload/txtUpload.js"
+import reminder from "./Module/reminder/reminder.js"
 vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     profile,
     signup,
-    uploads
+    uploads,
+    reminder
   }
 
 })

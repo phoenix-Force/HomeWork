@@ -4,24 +4,38 @@
       <el-row :gutter="10">
         <show-reminder :key="index" v-for="(x,index) in 8"></show-reminder>
       </el-row>
-
       <el-row style="margin-top:15px;">
-        <el-button class="addico"><i class="fa fa-plus"></i></el-button>
+        <el-button class="addico" @click = "flagCntrl()"><i class="fa fa-plus"></i></el-button>
       </el-row>
+      <set-reminder v-bind:flag="reminderFlag"></set-reminder>
     </el-col>
   </div>
 </template>
 <script>
 import showremindercard from "./shoreminder/ShowReminder.vue"
+import setreminder from "./setreminder/SetReminder.vue"
+import {mapActions} from "vuex"
+import { mapGetters } from 'vuex'
 export default {
 
   data(){
-    return{
 
+    return{
+      reminderFlag:false
     }
   },
   components:{
-    showReminder:showremindercard
+    showReminder:showremindercard,
+    setReminder:setreminder
+  },
+  computed:{
+    ...mapGetters(['getFlag'])
+  },
+  methods:{
+    ...mapActions(['setFlag']),
+    flagCntrl(){
+      this.setFlag();
+    }
   }
 
 }

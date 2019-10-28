@@ -2,15 +2,15 @@
     <el-col :span="6">
       <el-card class="crd">
         <div slot="header" class="clearfix">
-          <span>Card Header</span>
+          <span>BirthDay</span>
           <el-button style="float: right; padding: 3px 0" type="text"><i class="fa fa-times"></i></el-button>
         </div>
 
           <div style="padding: 14px;">
-            <span>Yummy hamburger</span>
+            <span>reminder Note  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae ut cumque possimus ea laborum modi, vel incidunt repudiandae hic optio facere! Et beatae eius exercitationem illo optio tenetur, nulla quia.</span>
             <div class="bottom clearfix">
-              <time class="time">{{ currentDate }}</time>
-              <el-button class="button">Operating</el-button>
+              <!-- <time class="time">{{ currentDate }}</time> -->
+              <el-button class="button" style="float:right;margin-bottom:10px;">Snooze</el-button>
             </div>
           </div>
       </el-card>
