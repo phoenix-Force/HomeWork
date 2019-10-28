@@ -1,6 +1,6 @@
 <template>
   <el-row style="height:60vh;">
-    <el-dialog title="Set reminder"  :visible.sync="flagFromStore">
+    <el-dialog title="Set reminder"  :visible.sync="nm">
       <el-form :model="reminderData">
         <el-form-item label="Header">
           <el-input v-model="reminderData.header"></el-input>
@@ -65,7 +65,16 @@ export default {
     }
   },
   computed:{
-    ...mapGetters({flagFromStore:'getFlag'})
+    ...mapGetters({flagFromStore:'getFlag'}),
+    nm: {
+          get(){
+            return this.flagFromStore
+          }
+          // set(){
+          //   ren this.flagFromStore = false;
+          // }
+
+    }
   },
   methods:{
     ...mapActions(['setFlag','setReminders']),

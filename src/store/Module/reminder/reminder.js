@@ -16,6 +16,9 @@ const mutations={
   },
   setFlagg(state){
     state.flag =! state.flag;
+  },
+  deleteReminds(state,x){
+    state.reminders.splice(x,1);
   }
 }
 const actions={
@@ -24,6 +27,9 @@ const actions={
   },
   setReminders({commit},data){
     commit('setReminds',data);
+  },
+  dltReminds({commit},x){
+    commit('deleteReminds',x)
   }
 }
 const getters={

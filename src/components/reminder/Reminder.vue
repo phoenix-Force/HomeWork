@@ -2,7 +2,8 @@
   <div>
     <el-col :span="24">
       <el-row :gutter="10">
-        <show-reminder :key="index" v-for="(x,index) in reminders" :reminds="x"></show-reminder>
+        <show-reminder :key="index" v-for="(x,index) in reminders" :reminds="x" :id="index"></show-reminder>
+
       </el-row>
       <el-row style="margin-top:15px;">
         <el-button class="addico" @click = "flagCntrl()"><i class="fa fa-plus"></i></el-button>
@@ -35,7 +36,8 @@ export default {
     ...mapActions(['setFlag']),
     flagCntrl(){
       this.setFlag();
-    }
+    },
+
   }
 
 }

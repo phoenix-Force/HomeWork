@@ -3,7 +3,7 @@
       <el-card class="crd">
         <div slot="header" class="clearfix">
           <span >{{reminds.header}}</span>
-          <el-button style="float: right; padding: 3px 0" type="text"><i class="fa fa-times"></i></el-button>
+          <el-button style="float: right; padding: 3px 0"  @click="removeItem(id)" type="text"><i class="fa fa-times"></i></el-button>
         </div>
         <span><p>{{reminds.note}}</p></span>
         <p>Active: <el-switch v-model="reminds.isActive"></el-switch><span style="float:right;">Time-left:</span></p>
@@ -22,8 +22,9 @@
 </template>
 <script>
 import axios from "axios"
+import {mapActions} from "vuex"
 export default {
-props:['reminds'],
+props:['reminds','id'],
   data () {
     return {
     }
@@ -39,6 +40,12 @@ props:['reminds'],
         console.log('Error fetching and parsing data', error);
       });
     },
+  },
+  methods:{
+    ...mapActions(['dltReminds']),
+    removeItem(id){
+      this.dltReminds(id);
+    }
   }
 }
 </script>
