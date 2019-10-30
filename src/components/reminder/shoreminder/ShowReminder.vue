@@ -3,18 +3,18 @@
       <el-card class="crd">
         <div slot="header" class="clearfix">
           <span >{{reminds.header}}</span>
-          <el-button style="float: right; padding: 3px 0"  @click="removeItem(id)" type="text"><i class="fa fa-times"></i></el-button>
+          <el-button style="float: right; padding: 3px 0"  @click="removeItem(reminds.id)" type="text"><i class="fa fa-times"></i></el-button>
         </div>
-        <span><p>{{reminds.note}}</p></span>
+        <p><span>{{reminds.note}}</span><span style="float:right;color:rgb(153,153,255);">Dated: {{reminds.date}}</span></p>
         <p>Active: <el-switch v-model="reminds.isActive"></el-switch><span style="float:right;">Time-left:</span></p>
 
 
-          <div style="padding: 14px;">
+          <div style="padding:5px;">
 
 
             <div class="bottom clearfix">
               <!-- <time class="time">{{ currentDate }}</time> -->
-              {{lm}}
+              <span style="color:rgb(255,179,179);">Today:  {{lm}}</span>
               <el-button class="button" style="float:right;margin-bottom:10px;">Snooze</el-button>
             </div>
           </div>
@@ -29,25 +29,25 @@ export default {
     data () {
       return {
         dtetm:'',
-        lm:''
+        lm:'',
+        timeLeft:''
       }
     },
   computed:{
-    reminders(){
-      axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
-      .then(response => {
-        consloe.log("hgsvxdg");
-        console.log(response);
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
-    },
+    showdate(){
+      // let fdl = this.reminders;
+      // let x =fdl.date;
+      // let dte = d.toLocaleString();
+      // return dte;
+    }
   },
   methods:{
     ...mapActions(['dltReminds']),
     removeItem(id){
-      this.dltReminds(id);
+      axios.delete("https://vue-http-3aefd.firebaseio.com/reminders.json")
+      .then(response => {
+                    this.result.splice(id, 1)
+      });
     },
     pollData (){
       var z = this.dtetm;
@@ -62,12 +62,20 @@ export default {
           // let mlsec  =x.getMilliseconds();
           let fdate = (`${day}/${month}/${year}   ${hour}:${min}:${sec}`);
           this.lm = fdate;
-          console.log(this.lm)
+          // var d = new Date(1469433907836);
+          let xx = Math.abs(x);
+          let gg = this.reminds.date;
+          let xy = Math.abs(gg);
+          var delta = (xy-xx) / 1000;
+
+
+
         }, 1);
     }
   },
   created(){
     this.pollData();
+
   }
 }
 

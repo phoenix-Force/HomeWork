@@ -12,7 +12,7 @@ const mutations={
     temp.isActive = remindersData.isActive;
     temp.snooze  = remindersData.snooze;
     state.reminders.push(temp);
-    console.log(state.reminders[0])
+
   },
   setFlagg(state){
     state.flag =! state.flag;

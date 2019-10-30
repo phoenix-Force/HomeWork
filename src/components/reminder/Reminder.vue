@@ -17,12 +17,14 @@ import showremindercard from "./shoreminder/ShowReminder.vue"
 import setreminder from "./setreminder/SetReminder.vue"
 import {mapActions} from "vuex"
 import { mapGetters } from 'vuex'
+import axios from "axios"
 export default {
 
   data(){
 
     return{
-      reminderFlag:false
+      reminderFlag:false,
+      reminders:[],
     }
   },
   components:{
@@ -30,7 +32,7 @@ export default {
     setReminder:setreminder
   },
   computed:{
-    ...mapGetters(['getFlag','reminders'])
+    ...mapGetters(['getFlag'])
   },
   methods:{
     ...mapActions(['setFlag']),
@@ -38,6 +40,21 @@ export default {
       this.setFlag();
     },
 
+  },beforeMount(){
+    axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
+    .then(response=>{
+      let reminders= []
+      const data = response.data;
+      for(let key in data){
+        const reminds =data[key];
+        var d = new Date(reminds.date );
+        reminds.id = key;
+        reminds.date = d.toLocaleString();
+        reminders.push(reminds);
+        this.reminders = reminders
+      }
+
+    }).catch(error=>console.log(error))
   }
 
 }

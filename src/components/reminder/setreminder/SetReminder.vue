@@ -9,8 +9,11 @@
           <el-input v-model="reminderData.note"></el-input>
         </el-form-item>
         <el-form-item label="Date & Time">
-          <el-date-picker type="date" v-model="reminderData.date" placeholder="Pick a date" ></el-date-picker>
-          <el-time-picker type="time" v-model="reminderData.time" placeholder="Pick a time" ></el-time-picker>
+          <el-date-picker type="datetime"
+            placeholder="Select date and time"
+            default-time="12:00:00" v-model="dte">
+          </el-date-picker>
+          <!-- <el-time-picker type="time" v-model="reminderData.time" placeholder="Pick a time" ></el-time-picker> -->
         </el-form-item>
         <el-form-item label="Active">
           <el-switch v-model="reminderData.isActive"></el-switch>
@@ -52,13 +55,14 @@ import axios from "axios"
 
 export default {
   props: ['flag'],
+
   data(){
     return{
+      dte:'',
       reminderData:{
-        header:'',
+        header:'head',
         note:'',
         date:null,
-        time:null,
         isActive:true,
         snooze:false
       }
@@ -83,24 +87,22 @@ export default {
     },
     setData(){
       let x = this.reminderData;
+      x.date = Math.abs(this.dte);
+
+// what's left is seconds
       // dte = x.getDate();
       // month = x.getMonth();
       // year = x.getFullYear();
       // hour = x.getHours();
       // min=x.getMinutes();
       // x.getsec();
-
-
-
-      axios.post("https://vue-http-3aefd.firebaseio.com/reminders.json",this.reminderData).then(res=>{
-        x.header='',
-        x.note='',
-        x.date=null,
-        x.time=null,
-        x.isActive=true,
-        x.snooze=false
-        console.log(typeof(x.date))
-        console.log(typeof(x.time))
+      axios.post("https://vue-http-3aefd.firebaseio.com/reminders.json",this.reminderData).then(response=>{
+        x.header='';
+        x.note='';
+        x.date=null;
+        x.timeLeft=null;
+        x.isActive=true;
+        x.snooze=false;
       }).catch(error=>console.log(error));
       this.setReminders(this.reminderData);
       this.flagCntrl();
