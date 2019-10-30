@@ -14,6 +14,7 @@
 
             <div class="bottom clearfix">
               <!-- <time class="time">{{ currentDate }}</time> -->
+              {{lm}}
               <el-button class="button" style="float:right;margin-bottom:10px;">Snooze</el-button>
             </div>
           </div>
@@ -24,11 +25,13 @@
 import axios from "axios"
 import {mapActions} from "vuex"
 export default {
-props:['reminds','id'],
-  data () {
-    return {
-    }
-  },
+  props:['reminds','id'],
+    data () {
+      return {
+        dtetm:'',
+        lm:''
+      }
+    },
   computed:{
     reminders(){
       axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
@@ -45,9 +48,29 @@ props:['reminds','id'],
     ...mapActions(['dltReminds']),
     removeItem(id){
       this.dltReminds(id);
+    },
+    pollData (){
+      var z = this.dtetm;
+        this.dtetm = setInterval(() => {
+          let x = new Date();
+          let day = x.getDate();
+          let month = x.getMonth();
+          let year = x.getFullYear();
+          let hour = x.getHours();
+          let min=x.getMinutes();
+          let sec  =x.getSeconds();
+          // let mlsec  =x.getMilliseconds();
+          let fdate = (`${day}/${month}/${year}   ${hour}:${min}:${sec}`);
+          this.lm = fdate;
+          console.log(this.lm)
+        }, 1);
     }
+  },
+  created(){
+    this.pollData();
   }
 }
+
 </script>
 <style scoped>
 .iamage{

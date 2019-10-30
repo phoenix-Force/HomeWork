@@ -10,7 +10,7 @@
         </el-form-item>
         <el-form-item label="Date & Time">
           <el-date-picker type="date" v-model="reminderData.date" placeholder="Pick a date" ></el-date-picker>
-          <el-time-picker type="date" v-model="reminderData.time" placeholder="Pick a time" ></el-time-picker>
+          <el-time-picker type="time" v-model="reminderData.time" placeholder="Pick a time" ></el-time-picker>
         </el-form-item>
         <el-form-item label="Active">
           <el-switch v-model="reminderData.isActive"></el-switch>
@@ -83,6 +83,15 @@ export default {
     },
     setData(){
       let x = this.reminderData;
+      // dte = x.getDate();
+      // month = x.getMonth();
+      // year = x.getFullYear();
+      // hour = x.getHours();
+      // min=x.getMinutes();
+      // x.getsec();
+
+
+
       axios.post("https://vue-http-3aefd.firebaseio.com/reminders.json",this.reminderData).then(res=>{
         x.header='',
         x.note='',
