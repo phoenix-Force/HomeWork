@@ -2,11 +2,11 @@
   <el-row style="height:60vh;">
     <el-dialog title="Set reminder"  :visible.sync="nm">
       <el-form :model="reminderData">
-        <el-form-item label="Header">
-          <el-input v-model="reminderData.header"></el-input>
+        <el-form-item label="Title">
+          <el-input v-model="reminderData.header" placeholder="Your reminders title"></el-input>
         </el-form-item>
         <el-form-item label="Note">
-          <el-input v-model="reminderData.note"></el-input>
+          <el-input v-model="reminderData.note" placeholder="Your reminders note"></el-input>
         </el-form-item>
         <el-form-item label="Date & Time">
           <el-date-picker type="datetime"
@@ -60,7 +60,7 @@ export default {
     return{
       dte:'',
       reminderData:{
-        header:'head',
+        header:'',
         note:'',
         date:null,
         isActive:true,

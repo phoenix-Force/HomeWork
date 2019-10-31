@@ -14,8 +14,8 @@
   <el-menu-item index="3" ><router-link to="/gallery">Gallery</router-link></el-menu-item>
   <el-menu-item index="5" ><router-link to="/timeline">Timeline</router-link></el-menu-item>
   <el-submenu index="4">
-    <template slot="title">More</template>
-    <el-menu-item index="4-1">Events</el-menu-item>
+    <template slot="title"><span style="font-size:18px;">More</span></template>
+    <el-menu-item index="4-1"><router-link to="/Events">Events</router-link></el-menu-item>
     <el-menu-item index="4-2" ><router-link to="/reminder">Reminder</router-link></el-menu-item>
     <el-submenu index="4-4">
       <template slot="title">item four</template>
@@ -24,9 +24,23 @@
       <el-menu-item index="4-4-3">item three</el-menu-item>
     </el-submenu>
   </el-submenu>
-  <el-menu-item index="5" >Info</el-menu-item>
-  <el-menu-item index="6"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>
-  <el-menu-item style="float:right" index="5" ><el-button @click="dialogFormVisible = true" style="border-radius: 30px">Login</el-button></el-menu-item>
+  <el-menu-item index="6" ><router-link to="/info">Info</router-link></el-menu-item>
+  <el-menu-item index="7"><a href="" target="">Orders</a></el-menu-item>
+  <el-menu-item style="float:right" index="9" ><el-button @click="dialogFormVisible = true" style="border-radius: 30px">Login</el-button></el-menu-item>
+  <el-menu-item index="8" style="float:right">
+    <el-badge :value="notification" :hidden="notification>0?false:true" :max="99" class="item">
+      <el-popover
+        placement="top-start"
+        title="Notifications"
+        width="200"
+        trigger="click">
+        <!-- <p :key = "index" v-for = "(x,index) in dislikes">{{x}}</p> -->
+        <p :key = "index" v-for="(x,index) in notification" style="height:5%;">Helle</p>
+        <el-button slot="reference" style="border-radius: 30px" @click="notification=0;"><i class="fa fa-bell"></i></el-button>
+      </el-popover>
+    </el-badge>
+  </el-menu-item>
+
 </el-menu>
 
 <el-dialog width="60%" :visible.sync="dialogFormVisible">
@@ -118,6 +132,7 @@ import axios from "axios"
         innerVisible:false,
         user_name:'',
         cls:false,
+        notification:10,
         form: {
           name: '',
           user_name:'',

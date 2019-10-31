@@ -8,6 +8,9 @@
       <post-container v-if="x.type=='pic'"></post-container>
       <text-container  v-if="x.type=='text'"></text-container>
     </el-row>
+    <!-- <el-backtop target=".page-component__scroll .el-scrollbar__wrap" :bottom="100">
+      <button style='font-size:24px'><i class='fas fa-angle-double-up'></i></button>
+  </el-backtop> -->
   </el-col>
 </el-col>
 
