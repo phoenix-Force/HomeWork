@@ -18,7 +18,10 @@
   </el-row>
   <el-row style="heigth:70%;-webkit-box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);box-shadow: 2px 0px 14px 2px rgba(0,0,0,0.88);border-radius: 25px;">
     <el-col>
-      <canvas id="myCanvas" style="height:95%;width:99%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;"></canvas>
+      <!-- <div :style="{background:post.bckColor}"  style="height:100%;width:100%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;">
+        <h1>{{post.txt}}</h1>
+      </div> -->
+      <canvas id="myCanvas" :style="{background:post.bckColor}" style="height:95%;width:99%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;" ></canvas>
     </el-col>
   </el-row>
   <el-row style="margin-top:5px;">
@@ -32,8 +35,23 @@
 <script>
 import cmntbx from "./commentBox.vue"
 export default {
+  props:['post'],
   components:{
     commentBox:cmntbx
+  },
+  methods:{
+    updateCanvas: function (){
+      let x = this.post;
+      var canvas = document.getElementById('myCanvas'),
+        ctx = canvas.getContext('2d');
+
+        ctx.fillStyle =`${x.fntColor}`;
+        ctx.font=`${x.fntSize}px ${x.fntFamily}`;
+        ctx.fillText(x.txt,10,50);
+    }
+  },
+  mounted(){
+  this.updateCanvas();
   }
 }
 </script>

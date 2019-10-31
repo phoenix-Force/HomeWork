@@ -97,6 +97,7 @@ export default {
       // min=x.getMinutes();
       // x.getsec();
       axios.post("https://vue-http-3aefd.firebaseio.com/reminders.json",this.reminderData).then(response=>{
+        // this.setReminders(this.reminderData);
         x.header='';
         x.note='';
         x.date=null;

@@ -200,7 +200,12 @@ export default {
       fd.append("image",this.files,this.files.name)
       if(x.url!=null){
         console.log(fd);
-        axios.post("gs://vue-http-3aefd.appspot.com/Images",fd).then(res=>console.log(res)).catch(error=>console.log(error));
+        axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",fd)
+        .then(respose=>{
+          console.log(respose)
+        })
+        .catch(error=>console.log(error));
+
       }else{
         this.$message.warning("choose a picture first")
       }
