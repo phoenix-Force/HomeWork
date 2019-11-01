@@ -1,5 +1,6 @@
 import axios from "axios";
 const state={
+  notification:[1,2,4,5],
   flag:false,
   reminders:[]
 }
@@ -36,6 +37,12 @@ const mutations={
       }
 
     }).catch(error=>console.log(error))
+  },
+  setNotifications(state,notice){
+    state.push(notice);
+  },
+  resetNotifications(state){
+    state.notification = []
   }
 }
 const actions={
@@ -50,6 +57,12 @@ const actions={
   },
   loaddb({commit}){
     commit('LoadFromdb')
+  },
+  setNotifications({commit},notice){
+    commit('setNotifications',notice);
+  },
+  resetNotifications({commit}){
+    commit('resetNotifications');
   }
 }
 const getters={
@@ -58,6 +71,10 @@ const getters={
   },
   reminders(state){
     return state.reminders;
+  },
+  getNotiFications(state){
+    console.log(state.notification)
+    return state.notification;
   }
 }
 export default{

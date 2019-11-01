@@ -28,15 +28,15 @@
   <el-menu-item index="7"><a href="" target="">Orders</a></el-menu-item>
   <el-menu-item style="float:right" index="9" ><el-button @click="dialogFormVisible = true" style="border-radius: 30px">Login</el-button></el-menu-item>
   <el-menu-item index="8" style="float:right">
-    <el-badge :value="notification" :hidden="notification>0?false:true" :max="99" class="item">
+    <el-badge :value="getNotiFications.length" :hidden="getNotiFications.length>0?false:true" :max="99" class="item">
       <el-popover
         placement="top-start"
         title="Notifications"
         width="200"
         trigger="click">
         <!-- <p :key = "index" v-for = "(x,index) in dislikes">{{x}}</p> -->
-        <p :key = "index" v-for="(x,index) in notification" style="height:5%;">Helle</p>
-        <el-button slot="reference" style="border-radius: 30px" @click="notification=0;"><i class="fa fa-bell"></i></el-button>
+        <p :key = "index" v-for="(x,index) in getNotiFications" style="height:5%;">Helle</p>
+        <el-button slot="reference" style="border-radius: 30px" @click="rset()"><i class="fa fa-bell"></i></el-button>
       </el-popover>
     </el-badge>
   </el-menu-item>
@@ -121,6 +121,7 @@
 <script>
 import { required, minLength, between,email} from 'vuelidate/lib/validators'
 import {mapGetters} from "vuex"
+import {mapActions} from "vuex"
 import axios from "axios"
   export default {
     data() {
@@ -132,7 +133,7 @@ import axios from "axios"
         innerVisible:false,
         user_name:'',
         cls:false,
-        notification:10,
+        // notification:10,
         form: {
           name: '',
           user_name:'',
@@ -150,10 +151,10 @@ import axios from "axios"
       };
     },
     computed:{
-
+      ...mapGetters(['getNotiFications'])
     },
     methods: {
-
+      ...mapActions(['setNotifications','resetNotifications']),
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -183,6 +184,12 @@ import axios from "axios"
     //   // to form submit after this
     //   alert("Form submitted");
     // }
+    showNotification(){
+
+    },
+    rset(){
+      this.resetNotifications();
+    }
     },
     validations: {
     user_name: {
@@ -190,6 +197,7 @@ import axios from "axios"
       minLength:minLength(3)
       }
     }
+
   }
 </script>
 <style  scoped>
