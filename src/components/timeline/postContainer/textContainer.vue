@@ -44,7 +44,6 @@ export default {
       let x = this.post;
       var canvas = document.getElementById('myCanvas'),
         ctx = canvas.getContext('2d');
-
         ctx.fillStyle =`${x.fntColor}`;
         ctx.font=`${x.fntSize}px ${x.fntFamily}`;
         ctx.fillText(x.txt,10,50);

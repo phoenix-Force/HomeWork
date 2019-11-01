@@ -1,3 +1,4 @@
+import axios from "axios";
 const state={
   flag:false,
   reminders:[]
@@ -19,6 +20,22 @@ const mutations={
   },
   deleteReminds(state,x){
     state.reminders.splice(x,1);
+  },
+  LoadFromdb(state){
+    axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
+    .then(response=>{
+      let xx= []
+      const data = response.data;
+      for(let key in data){
+        const reminds =data[key];
+        var d = new Date(reminds.date );
+        reminds.id = key;
+        reminds.date = d.toLocaleString();
+        xx.push(reminds);
+        state.reminders = xx;
+      }
+
+    }).catch(error=>console.log(error))
   }
 }
 const actions={
@@ -30,6 +47,9 @@ const actions={
   },
   dltReminds({commit},x){
     commit('deleteReminds',x)
+  },
+  loaddb({commit}){
+    commit('LoadFromdb')
   }
 }
 const getters={

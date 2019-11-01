@@ -24,7 +24,6 @@ export default {
 
     return{
       reminderFlag:false,
-      reminders:[],
     }
   },
   components:{
@@ -32,29 +31,31 @@ export default {
     setReminder:setreminder
   },
   computed:{
-    ...mapGetters(['getFlag'])
+    ...mapGetters(['getFlag','reminders'])
   },
   methods:{
-    ...mapActions(['setFlag']),
+    ...mapActions(['setFlag','loaddb']),
     flagCntrl(){
       this.setFlag();
     },
 
-  },beforeMount(){
-    axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
-    .then(response=>{
-      let reminders= []
-      const data = response.data;
-      for(let key in data){
-        const reminds =data[key];
-        var d = new Date(reminds.date );
-        reminds.id = key;
-        reminds.date = d.toLocaleString();
-        reminders.push(reminds);
-        this.reminders = reminders
-      }
+  },
+  beforeMount(){
+    this.loaddb();
+  //   axios.get("https://vue-http-3aefd.firebaseio.com/reminders.json")
+  //   .then(response=>{
+  //     let reminders= []
+  //     const data = response.data;
+  //     for(let key in data){
+  //       const reminds =data[key];
+  //       var d = new Date(reminds.date );
+  //       reminds.id = key;
+  //       reminds.date = d.toLocaleString();
+  //       reminders.push(reminds);
+  //       this.reminders = reminders
+  //     }
 
-    }).catch(error=>console.log(error))
+  //   }).catch(error=>console.log(error))
   }
 
 }
