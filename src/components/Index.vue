@@ -9,9 +9,11 @@
 <script>
 
 import navad from "./shared/Head.vue"
+
 export default {
   components:{
-    navHead:navad
+    navHead:navad,
+
   }
 }
 </script>

@@ -154,7 +154,7 @@ import axios from "axios"
       ...mapGetters(['getNotiFications'])
     },
     methods: {
-      ...mapActions(['setNotifications','resetNotifications']),
+      ...mapActions(['setNotifications','resetNotifications','getNotificationFromdb']),
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -188,8 +188,12 @@ import axios from "axios"
 
     },
     rset(){
+      console.log('asbhjcdfhjiqa')
       this.resetNotifications();
     }
+    },
+    beforeMount(){
+      this.getNotificationFromdb();
     },
     validations: {
     user_name: {

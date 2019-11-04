@@ -158,7 +158,7 @@ export default {
       }
       // z.fntDeco = 'underline';
     },
-    ...mapActions(['setData']),
+    ...mapActions(['setData','setNotifications']),
     uploadData(){
       var d = new Date();
       let z = this.txtData;
@@ -178,6 +178,11 @@ export default {
           z.fntDeco='';
           z.fntWeight='';
           z.bckColor='rgb(204,212,255)';
+          notice={
+            title:'Text Uploded',
+            link:'/timeline'
+          }
+          this.setNotifications(notice);
           this.$message.success("Uploadted Successfully");
         }).catch(error=>this.$message.error(error));
       }else{
@@ -197,10 +202,10 @@ export default {
     postOnDb(){
       let x = this.picDta;
       const fd = new FormData();
-      fd.append("image",this.files,this.files.name)
+      fd.append('image',this.files,this.files.name)
       if(x.url!=null){
         console.log(fd);
-        axios.post("https://vue-http-3aefd.firebaseio.com/uploads.json",fd)
+        axios.post("https://vue-http-3aefd.firebaseio.com/upload.json",fd)
         .then(respose=>{
           console.log(respose)
         })

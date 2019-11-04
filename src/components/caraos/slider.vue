@@ -1,5 +1,6 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="550px" loop>
+<div>
+    <el-carousel :interval="4000" type="card" height="550px" loop>
     <el-carousel-item v-for="(item,index) in img" :key="index">
       <el-image
       style="width: 100%; height: 100%"
@@ -8,8 +9,11 @@
 
     </el-carousel-item>
   </el-carousel>
+    <foot-set></foot-set>
+</div>
 </template>
 <script>
+import footer from "../shared/Footer.vue"
 export default {
   data(){
     return{
@@ -21,6 +25,9 @@ export default {
         '../../../src/assets/s5.jpg'
       ]
     }
+  },
+  components:{
+    footSet:footer
   }
 }
 </script>

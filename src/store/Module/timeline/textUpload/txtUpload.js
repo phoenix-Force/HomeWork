@@ -4,23 +4,9 @@ vue.use(axios)
 
 const state = {
   txt_info:{
-    id:1,
-    txt:'',
-    fntSize:20,
-    fntFamily:'verdana',
-    fntColor:'rgba(0,0,0,1)',
-    fntStyle:'',
-    fntDeco:'',
-    fntWeight:'',
-    bckColor:'rgb(204,212,255)',
-    time:'',
-    like:20,
-    unlike:'',
-    comments:''
   }
 }
 const mutations={
-
   saveData(state,dta){
     state.txt_info.id=dta.id;
     state.txt_info.txt=dta.txt;
@@ -35,19 +21,35 @@ const mutations={
     state.txt_info.like=dta.like;
     state.txt_info.unlike=dta.unlike;
     state.txt_info.comments=dta.comments;
-    console.log("set data3")
+  },
+  getT(state){
+    axios.get("https://vue-http-3aefd.firebaseio.com/uploads.json")
+    .then(response=>{
+      const data = response.data;
+      let zz=[];
+      for(let key in data){
+        var x = data[key];
+
+        zz.push(x);
+      }
+      state.txt_info = zz
+    }).catch(error=>console.log(error))
   }
+
 
 }
 const actions = {
   setData({commit},dta){
     commit('saveData',dta);
     console.log("set data2")
+  },
+  getTimeline({commit}){
+    commit('getT');
   }
 }
 const getters = {
   getTxtData(state){
-    return(state);
+    return(state.txt_info);
   }
 }
 export default{

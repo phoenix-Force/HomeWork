@@ -1,6 +1,6 @@
 import axios from "axios";
 const state={
-  notification:[1,2,4,5],
+  notification:[1,2,3,12,5,4,9],
   flag:false,
   reminders:[]
 }
@@ -39,10 +39,31 @@ const mutations={
     }).catch(error=>console.log(error))
   },
   setNotifications(state,notice){
+    console.log(notice);
     state.push(notice);
+    axios.post("https://vue-http-3aefd.firebaseio.com/notification.json",notice)
+    .then(response=>console.log(response))
+    .catch(error=>console.log(error))
+  },
+  getnt(){
+    axios.get("https://vue-http-3aefd.firebaseio.com/notification.json")
+    .then(response=>{
+      let data = response.data;
+      var zz = []
+      for(let key in data){
+        const notice =data[key];
+        notice.id = key;
+        zz.push(notice);
+      }
+      state.notification = zz;
+    })
+    .catch(error=>console.log(error));
   },
   resetNotifications(state){
     state.notification = []
+    axios.delete("https://vue-http-3aefd.firebaseio.com/notification.json")
+    .then((response)=>console.log(response))
+    .catch(error=>console.log(error));
   }
 }
 const actions={
@@ -63,6 +84,9 @@ const actions={
   },
   resetNotifications({commit}){
     commit('resetNotifications');
+  },
+  getNotificationFromdb({commit}){
+    commit('getnt')
   }
 }
 const getters={

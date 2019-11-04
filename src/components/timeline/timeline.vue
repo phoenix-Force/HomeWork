@@ -26,30 +26,27 @@ import upload from "./uploadText/txtUplod.vue"
 import postcontainer from "./postContainer/postContainer.vue"
 import textcontainer from "./postContainer/textContainer.vue"
 import axios from "axios"
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data(){
     return{
-      pictos:[],
       uploads:[{type:'text'},{type:"pic"},{type:'text'},{type:'text'},{type:"pic"},{type:"pic"}]
     }
+  },
+  computed:{
+    ...mapGetters({pictos:'getTxtData'})
   },
   components:{
     finalUpload:upload,
     postContainer:postcontainer,
     textContainer:textcontainer
   },
+  methods:{
+    ...mapActions(['getTimeline'])
+  },
   beforeMount(){
-    axios.get("https://vue-http-3aefd.firebaseio.com/uploads.json")
-    .then(response=>{
-      const data = response.data;
-
-      for(let key in data){
-        let x = data[key];
-        this.pictos.push(x);
-
-      }
-      console.log(this.pictos);
-    }).catch(error=>console.log(error))
+    this.getTimeline();
+    console.log(this.pictos);
   }
 }
 </script>

@@ -5,7 +5,7 @@
         <el-col :span = "24">
           <div style="height:100%;width:100%">
             <!-- <el-image class  ="profileImage" :src="profile_dtls.dp"> -->
-              <img src="data:image/png;base64,aHR0cDovL2xvY2FsaG9zdDo4MDgwL2MxNjNiMzJkLTcyODUtNDNjZi05NjA4LWRjYzZlMmQ4MWQ4ZA=="/>
+              <img src="../../../src/assets/s1.jpg"/>
           </div>
         </el-col>
       </el-col>

@@ -21,7 +21,8 @@
       <!-- <div :style="{background:post.bckColor}"  style="height:100%;width:100%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;">
         <h1>{{post.txt}}</h1>
       </div> -->
-      <canvas id="myCanvas" :style="{background:post.bckColor}" style="height:95%;width:99%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;" ></canvas>
+      <textarea  id="myCanvas" style = "height:96%;width:99%;margin-top:3px;margin-left:5px;overflow:hidden;border-radius:15px;"></textarea >
+      <!-- <canvas class ="c"></canvas> -->
     </el-col>
   </el-row>
   <el-row style="margin-top:5px;">
@@ -42,11 +43,23 @@ export default {
   methods:{
     updateCanvas: function (){
       let x = this.post;
-      var canvas = document.getElementById('myCanvas'),
-        ctx = canvas.getContext('2d');
-        ctx.fillStyle =`${x.fntColor}`;
-        ctx.font=`${x.fntSize}px ${x.fntFamily}`;
-        ctx.fillText(x.txt,10,50);
+      // console.log(this.post)
+      var txtarea = document.getElementById('myCanvas');
+      // var canvas = document.querySelector(".c");
+      // canvas.height = `30vh`
+      // canvas.width = `40vh`
+      // let ctx = canvas.getContext('2d');
+
+        // ctx = canvas.getContext('2d');
+        // // ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ctx.fillStyle =`${x.fntColor}`;
+        // ctx.font=`${x.fntSize}px ${x.fntFamily}`;
+        // ctx.fillText(x.txt, 50, 50);
+        txtarea.value = `${x.txt}`;
+        txtarea.style.color= `${x.fntColor}`
+        txtarea.style.backgroundColor= `${x.bckColor}`
+        txtarea.style.fontFamily=`${x.fntFamily}`;
+        txtarea.style.fontSize = `${x.fntSize}`
     }
   },
   mounted(){
