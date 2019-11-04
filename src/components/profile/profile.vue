@@ -36,18 +36,20 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import axios from "axios"
 export default {
   computed:{
     ...mapGetters({
       profile_dtls:'getProfile'
-    }),
-    srcImg(){
-      $http.get(url,{responseType: "blob"}).success((data) => {
-        var file = new File([profile_dtls.dp], "sample.jpg");
-        xp=file;
-      });
-    }
+    })
+
+  },
+  methods:{
+    ...mapActions(['profileSet'])
+  },
+  beforeMount(){
+    this.profileSet();
   }
 
 }

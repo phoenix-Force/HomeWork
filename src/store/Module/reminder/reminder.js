@@ -73,7 +73,6 @@ const getters={
     return state.reminders;
   },
   getNotiFications(state){
-    console.log(state.notification)
     return state.notification;
   }
 }
